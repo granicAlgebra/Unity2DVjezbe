@@ -51,12 +51,12 @@ public class MovementExamples : MonoBehaviour
             } 
             else if (_doubleJump)
             {
-                Vector2 velocity = _rigidbody.velocity;
+                Vector2 velocity = _rigidbody.linearVelocity;
                 velocity.y = 0;
-                _rigidbody.velocity = velocity; 
+                _rigidbody.linearVelocity = velocity; 
                 _rigidbody.AddForce(Vector2.up * _jumpForce, ForceMode2D.Impulse);
                 _doubleJump = false;
-
+                Debug.Log("Double jump!");
             }
         }
 
