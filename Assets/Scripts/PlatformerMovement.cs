@@ -3,10 +3,14 @@ using UnityEngine;
 
 public class PlatformerMovement : MonoBehaviour
 {
+    [Header("Speed and acceleration")]
     [SerializeField] private float _runSpeed = 8;
     [SerializeField] private float _acceleration = 60;
-    [SerializeField] private float _airAcceleration = 20;
     [SerializeField] private float _deceleration = 70;
+    [SerializeField] private float _airAcceleration = 20;
+    [SerializeField] private float _airDeceleration = 10f;
+
+    [Header("Jump")]
     [SerializeField] private float _coyoteTime = 0.1f;
     [SerializeField] private float _jumpCutMultiplier = 0.5f;
     [SerializeField] private float _earlyJumpTime = 0.1f;
@@ -14,6 +18,7 @@ public class PlatformerMovement : MonoBehaviour
     [SerializeField] private float _jumpSpeed = 15;
     [SerializeField] private float _gravity = 40;
 
+    [Header("Ground check")]
     [SerializeField] private Transform _groundCheckTarget;
     [SerializeField] private float _groundCheckRadius;
     [SerializeField] private LayerMask _groudnLayerMask;
@@ -29,7 +34,6 @@ public class PlatformerMovement : MonoBehaviour
     private float _timeSinceJumpPressed = float.MaxValue;
 
     
-
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -84,10 +88,21 @@ public class PlatformerMovement : MonoBehaviour
 
         float acceleration = 0;
 
-        if (_grounded)
-            acceleration = _acceleration;
+        // Direction
+        if (Mathf.Abs(horizontalDirection) > 0.01f)
+        {
+            if (_grounded)
+                acceleration = _acceleration;
+            else
+                acceleration = _airAcceleration;
+        }
         else
-            acceleration = _airAcceleration;
+        {
+            if (_grounded)
+                acceleration = _deceleration;
+            else
+                acceleration = _airDeceleration;
+        }
 
         float velocityDifference = horizontalDirection - velocity.x;
         float deltaAccleration = acceleration * Time.fixedDeltaTime;
@@ -103,6 +118,8 @@ public class PlatformerMovement : MonoBehaviour
             velocity.y = _jumpSpeed;
             _grounded = false;
             _jumpPressedThisFrame = false;
+            _earlyJumpTimerActive = false;
+            _timeSinceJumpPressed = float.MaxValue;
         }
 
         // Variable jump height
@@ -111,10 +128,9 @@ public class PlatformerMovement : MonoBehaviour
             velocity.y *= _jumpCutMultiplier;
         }
 
-
         _rididbody.linearVelocity = velocity;
 
-
+        _jumpPressedThisFrame = false;
     }
 
     private void OnDrawGizmos()

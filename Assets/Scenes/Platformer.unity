@@ -503,7 +503,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 1.1, y: -4.24, z: 0}
-  m_LocalScale: {x: 15.174539, y: 0.70171255, z: 1}
+  m_LocalScale: {x: 27.729952, y: 0.70171255, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1372382340}
@@ -1242,7 +1242,7 @@ Rigidbody2D:
   m_Interpolate: 1
   m_SleepingMode: 1
   m_CollisionDetection: 1
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!4 &1976930747
 Transform:
   m_ObjectHideFlags: 0
@@ -1275,8 +1275,13 @@ MonoBehaviour:
   _runSpeed: 8
   _acceleration: 60
   _deceleration: 70
-  _jumpSpeed: 15
-  _gravity: -30
+  _airAcceleration: 20
+  _airDeceleration: 10
+  _coyoteTime: 0.1
+  _jumpCutMultiplier: 0.5
+  _earlyJumpTime: 0.1
+  _jumpSpeed: 14
+  _gravity: -40
   _groundCheckTarget: {fileID: 2144456085}
   _groundCheckRadius: 0.13
   _groudnLayerMask:
