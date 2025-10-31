@@ -14,6 +14,7 @@ public class PlatformerMovement : MonoBehaviour
     [SerializeField] private float _coyoteTime = 0.1f;
     [SerializeField] private float _jumpCutMultiplier = 0.5f;
     [SerializeField] private float _earlyJumpTime = 0.1f;
+    [SerializeField] private bool _canDoubleJump = true;
 
     [SerializeField] private float _jumpSpeed = 15;
     [SerializeField] private float _gravity = 40;
@@ -32,6 +33,8 @@ public class PlatformerMovement : MonoBehaviour
 
     private float _timeSinceLeftGround = 0;
     private float _timeSinceJumpPressed = float.MaxValue;
+
+    private bool _doubleJump = false;
 
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -120,6 +123,19 @@ public class PlatformerMovement : MonoBehaviour
             _jumpPressedThisFrame = false;
             _earlyJumpTimerActive = false;
             _timeSinceJumpPressed = float.MaxValue;
+        }
+
+        // Double jump
+        if (_grounded && !_doubleJump)
+        {
+            _doubleJump = true;
+        }
+
+        if (!_grounded && _doubleJump && _jumpPressedThisFrame)
+        {
+            _doubleJump = false;
+            velocity.y = _jumpSpeed;
+            _jumpPressedThisFrame = false;
         }
 
         // Variable jump height
