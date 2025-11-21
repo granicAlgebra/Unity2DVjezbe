@@ -11,6 +11,8 @@ public class GameplayManager : MonoBehaviour
     [SerializeField] GameObject _heartPrefab;
     [SerializeField] GameObject _player;
 
+    [SerializeField] Animator _gameOverScreen;
+
     private int _coins = 0;
     private int _lives = 3;
     List<GameObject> _hearts = new List<GameObject>();
@@ -50,6 +52,7 @@ public class GameplayManager : MonoBehaviour
         _hearts.RemoveAt(0);
         _lives--;
 
+        _gameOverScreen.SetInteger("Health", _lives);
         if (_lives == 0)
         {
             Destroy(_player);
