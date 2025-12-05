@@ -36,7 +36,9 @@ public class PlatformerMovement : MonoBehaviour
 
     private bool _doubleJump = false;
 
-    
+    public bool IsGrounded {  get { return _grounded; } }
+    public Vector2 Velocity { get { return _rididbody.linearVelocity; } }
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
