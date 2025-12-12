@@ -9,7 +9,8 @@ public class InputManager : MonoBehaviour
 
     public event Action JumpInputPressed;
     public event Action JumpInputReleased;
-    
+    public event Action AttackInput;
+
     void Awake()
     {
         if (Instance != null && Instance != this)
@@ -30,6 +31,9 @@ public class InputManager : MonoBehaviour
             JumpInputPressed?.Invoke();
         if (Input.GetButtonUp("Jump"))
             JumpInputReleased?.Invoke();
+        if (Input.GetButton("Fire1"))
+            AttackInput?.Invoke();
+
     }
 
 }

@@ -16,8 +16,6 @@ public class GateMechanic : MonoBehaviour
         _startPosition = transform.position;
     }
 
-
-
     private IEnumerator AnimationCoroutine(bool toOpen)
     {
         float time = 0;

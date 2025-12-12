@@ -3,6 +3,8 @@ using UnityEngine;
 
 public class EnemySimple : MonoBehaviour
 {
+    public int Health = 10;
+
     [SerializeField] private float _movementSpeed = 4;
     [SerializeField] private float _acceleration = 60;
     [SerializeField] private float _deceleration = 70;
@@ -113,6 +115,15 @@ public class EnemySimple : MonoBehaviour
             Gizmos.DrawWireSphere(_wallCheckRight.position, 0.05f);
             Gizmos.color = Color.blue;
             Gizmos.DrawWireSphere(transform.position, _playerSensorRadius);
+        }
+    }
+
+    public void TakeDamage(int damage)
+    {
+        Health -= damage;
+        if (Health < 0)
+        {
+            Destroy(gameObject);    
         }
     }
 }

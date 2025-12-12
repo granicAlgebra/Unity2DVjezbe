@@ -221,7 +221,7 @@ GameObject:
   - component: {fileID: 60354163}
   - component: {fileID: 60354162}
   - component: {fileID: 60354161}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Enemy
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -240,6 +240,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd422a3b9fcca40428eb03b4b450054e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemySimple
+  Health: 30
   _movementSpeed: 1.75
   _acceleration: 60
   _deceleration: 70
@@ -1199,7 +1200,7 @@ GameObject:
   - component: {fileID: 277565875}
   - component: {fileID: 277565874}
   - component: {fileID: 277565873}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Enemy (2)
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -1218,6 +1219,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd422a3b9fcca40428eb03b4b450054e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemySimple
+  Health: 20
   _movementSpeed: 1.75
   _acceleration: 60
   _deceleration: 70
@@ -1446,7 +1448,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0.091, z: 0}
   m_LocalScale: {x: 1.4, y: 1.4, z: 1.4}
-  m_ConstrainProportionsScale: 1
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1976930747}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3410,6 +3412,68 @@ MonoBehaviour:
       m_PostInfinity: 2
       m_RotationOrder: 4
   CustomBlends: {fileID: 0}
+--- !u!1 &661725549
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 661725550}
+  - component: {fileID: 661725551}
+  m_Layer: 3
+  m_Name: Sword
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &661725550
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 661725549}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1976930747}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &661725551
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 661725549}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8bcb62d493001c544ab15f9022fa562f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SwordWeapon
+  Damage: 10
+  _spriteRenderer: {fileID: 350020839}
+  _offsetPosition: {x: 0.5, y: 0}
+  _boxSize: {x: 0.5, y: 0.5}
+  _contactFilter:
+    useTriggers: 0
+    useLayerMask: 1
+    useDepth: 0
+    useOutsideDepth: 0
+    useNormalAngle: 0
+    useOutsideNormalAngle: 0
+    layerMask:
+      serializedVersion: 2
+      m_Bits: 128
+    minDepth: 0
+    maxDepth: 0
+    minNormalAngle: 0
+    maxNormalAngle: 0
 --- !u!1 &705413331
 GameObject:
   m_ObjectHideFlags: 0
@@ -6687,7 +6751,7 @@ GameObject:
   - component: {fileID: 1768304119}
   - component: {fileID: 1768304118}
   - component: {fileID: 1768304117}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Enemy (1)
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -6706,6 +6770,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd422a3b9fcca40428eb03b4b450054e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemySimple
+  Health: 10
   _movementSpeed: 1.75
   _acceleration: 60
   _deceleration: 70
@@ -7141,6 +7206,7 @@ GameObject:
   - component: {fileID: 1976930747}
   - component: {fileID: 1976930746}
   - component: {fileID: 1976930745}
+  - component: {fileID: 1976930750}
   - component: {fileID: 1976930749}
   - component: {fileID: 1976930748}
   m_Layer: 3
@@ -7229,6 +7295,7 @@ Transform:
   m_Children:
   - {fileID: 350020838}
   - {fileID: 2144456085}
+  - {fileID: 661725550}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1976930748
@@ -7273,6 +7340,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerAnimationController
   _animator: {fileID: 350020840}
   _movement: {fileID: 1976930748}
+  _spriteRenderer: {fileID: 350020839}
+--- !u!114 &1976930750
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1976930744}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2353829b944bd034997426d504d2fe95, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerController
+  CurrentWeapon: {fileID: 661725551}
 --- !u!1 &2018475270
 GameObject:
   m_ObjectHideFlags: 0
