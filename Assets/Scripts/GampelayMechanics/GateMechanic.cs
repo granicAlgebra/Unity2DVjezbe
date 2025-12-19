@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class GateMechanic : MonoBehaviour
 {
@@ -10,6 +11,10 @@ public class GateMechanic : MonoBehaviour
 
     private Vector3 _startPosition;
     private Coroutine _animation;
+
+    public UnityEvent OnDoorOpen;
+    public UnityEvent OnDoorClose;
+
 
     void Start()
     {
@@ -47,6 +52,7 @@ public class GateMechanic : MonoBehaviour
             StopCoroutine(_animation);
         }
 
+        OnDoorOpen?.Invoke();
         _animation = StartCoroutine(AnimationCoroutine(true));
     }
 
@@ -56,7 +62,7 @@ public class GateMechanic : MonoBehaviour
         {
             StopCoroutine(_animation);
         }
-
+        OnDoorClose?.Invoke();
         _animation = StartCoroutine(AnimationCoroutine(false));
     }
 }

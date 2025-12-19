@@ -3,6 +3,7 @@ using UnityEngine;
 public class Coin : MonoBehaviour
 {
     [SerializeField] private int _coins = 1;
+    [SerializeField] private AudioClip _cointSFX;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -10,6 +11,7 @@ public class Coin : MonoBehaviour
         {
             GameplayManager.Instance.AddCoins(_coins);
             Destroy(this.gameObject);
+            SfxManagar.Instance.PlaySFX(_cointSFX);
         }
     }
 

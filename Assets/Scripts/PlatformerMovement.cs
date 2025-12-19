@@ -18,6 +18,7 @@ public class PlatformerMovement : MonoBehaviour
 
     [SerializeField] private float _jumpSpeed = 15;
     [SerializeField] private float _gravity = 40;
+    [SerializeField] private AudioClip _jumpSFX;
 
     [Header("Ground check")]
     [SerializeField] private Transform _groundCheckTarget;
@@ -120,6 +121,7 @@ public class PlatformerMovement : MonoBehaviour
         // Jump
         if ((_grounded || coyote) && (_jumpPressedThisFrame || earlyJump))
         {
+            SfxManagar.Instance.PlaySFX(_jumpSFX);
             velocity.y = _jumpSpeed;
             _grounded = false;
             _jumpPressedThisFrame = false;
@@ -135,6 +137,7 @@ public class PlatformerMovement : MonoBehaviour
 
         if (!_grounded && _doubleJump && _jumpPressedThisFrame)
         {
+            SfxManagar.Instance.PlaySFX(_jumpSFX);
             _doubleJump = false;
             velocity.y = _jumpSpeed;
             _jumpPressedThisFrame = false;
