@@ -7,7 +7,7 @@ public class Heart : MonoBehaviour
         if (collision.CompareTag("Player"))
         {
             GameplayManager.Instance.AddHeart();
-            Destroy(this.gameObject);
+            gameObject.SetActive(false);
         }
     }
 }

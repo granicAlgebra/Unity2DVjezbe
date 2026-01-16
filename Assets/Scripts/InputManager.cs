@@ -34,6 +34,10 @@ public class InputManager : MonoBehaviour
         if (Input.GetButton("Fire1"))
             AttackInput?.Invoke();
 
+        //if (Input.GetKeyDown(KeyCode.F5))
+        //    SaveManager.SaveToDisk();
+        //if (Input.GetKeyDown(KeyCode.F8))
+        //    SaveManager.LoadState();
     }
 
 }

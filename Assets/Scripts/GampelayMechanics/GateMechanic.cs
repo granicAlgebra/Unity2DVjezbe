@@ -19,6 +19,8 @@ public class GateMechanic : MonoBehaviour
     void Start()
     {
         _startPosition = transform.position;
+
+        SaveManager.LoadState();
     }
 
     private IEnumerator AnimationCoroutine(bool toOpen)
@@ -54,6 +56,8 @@ public class GateMechanic : MonoBehaviour
 
         OnDoorOpen?.Invoke();
         _animation = StartCoroutine(AnimationCoroutine(true));
+
+        SaveManager.SaveToDisk();
     }
 
     internal void Close()

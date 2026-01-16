@@ -12,8 +12,9 @@ public class GameplayManager : MonoBehaviour
     [SerializeField] GameObject _player;
 
     [SerializeField] Animator _gameOverScreen;
-
+    [SaveFieldAttribute]
     private int _coins = 0;
+    [SaveFieldAttribute]
     private int _lives = 3;
     List<GameObject> _hearts = new List<GameObject>();
 
@@ -29,6 +30,7 @@ public class GameplayManager : MonoBehaviour
         {
             _hearts.Add(Instantiate(_heartPrefab, _heartContainer));
         }
+        SaveManager.OnLoad += RebuildUI;
     }
 
     public void AddCoins(int coins)
@@ -41,6 +43,31 @@ public class GameplayManager : MonoBehaviour
     {
         _hearts.Add(Instantiate(_heartPrefab, _heartContainer));
         _lives++;
+    }
+
+    public void RebuildUI()
+    {
+        _coinText.text = _coins.ToString();
+
+        int diff = _lives - _hearts.Count;
+
+        if (diff > 0)
+        {
+            for (int i = 0; i < diff; i++)
+            {
+                _hearts.Add(Instantiate(_heartPrefab, _heartContainer));
+            }
+        }
+        else if (diff < 0)
+        {
+            diff = -diff;
+            
+            for (int i = 0; i < diff; i++)
+            {
+                Destroy(_hearts[0]);
+                _hearts.RemoveAt(0);
+            }
+        }
     }
 
     public void RemoveHeart()

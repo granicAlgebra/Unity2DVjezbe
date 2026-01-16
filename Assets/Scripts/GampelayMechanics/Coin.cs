@@ -10,7 +10,7 @@ public class Coin : MonoBehaviour
         if (collision.CompareTag("Player"))
         {
             GameplayManager.Instance.AddCoins(_coins);
-            Destroy(this.gameObject);
+            gameObject.SetActive(false);
             SfxManagar.Instance.PlaySFX(_cointSFX);
         }
     }
